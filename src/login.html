@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EloGroup Leads</title>
+
+  <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+  <main class="container">
+    <img src="/public/logo.png" alt="EloGroup">
+
+    <form action="">
+      <div class="input-field">
+        <label for="username">Usuário *</label>
+        <input 
+          type="text" 
+          name="username" 
+          id="username"
+          required
+          title="Preencha com seu nome de usuário"
+          >  
+        </div>
+        
+        <div class="input-field">
+          <label for="password">Password *</label>
+          <input 
+          type="password" 
+          name="password" 
+          id="password" 
+          placeholder="********"
+          required
+          title="Password deve possuir ao menos 8 caracteres, contendo ao menos, um caracter especial, um caracter numérico, um caracter alfanumérico"
+          >
+        </div>
+        
+        <div class="input-field">
+          <label for="password2">Confirmação Password *</label>
+          <input 
+          type="password" 
+          name="password2" 
+          id="password2" 
+          placeholder="********"
+          required
+          title="Password e confirmação devem ser iguais"
+          >
+      </div>
+      
+      <input type="submit" value="Registrar">
+      
+      <a href="#" onclick="alert('Redireciona para login')">Já possui cadastro?</a>
+    </form>
+  </main>
+</body>
+</html>
