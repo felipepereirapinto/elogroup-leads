@@ -1,0 +1,19 @@
+{
+  "leads": [
+    {
+      "id": 0,
+      "name": "Org. Internacionais",
+      "stage": 0
+    },
+    {
+      "id": 1,
+      "name": "Ind. Farm. LTDA",
+      "stage": 1
+    },
+    {
+      "id": 2,
+      "name": "Musc. Sound Live Cmp",
+      "stage": 0
+    }
+  ]
+}
