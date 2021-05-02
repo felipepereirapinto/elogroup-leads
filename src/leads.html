@@ -7,6 +7,8 @@
   <title>EloGroup Leads</title>
 
   <link rel="stylesheet" href="leads.css">
+
+  <script src="leads.js" defer></script>
 </head>
 
 <body>
@@ -16,8 +18,33 @@
       <h1>Painel de Leads</h1>
     </div>
 
-    <button>Novo Lead (+)</button>
+    <button onclick="Lead.create()">Novo Lead (+)</button>
 
+    <div class="leads-container">
+      <div class="leads-row">
+        <span class="lead">Clientes em Potencial</span>
+        <span class="lead">Dados Confirmados</span>
+        <span class="lead">Reunião Agendada</span>
+      </div>
+      
+      <div class="leads-row">
+        <span class="lead">Org. Internacionais</span>
+        <span class="lead"></span>
+        <span class="lead"></span>
+      </div>
+      
+      <div class="leads-row">
+        <span class="lead"></span>
+        <span class="lead">Ind. Farm. LTDA</span>
+        <span class="lead"></span>
+      </div>
+      
+      <div class="leads-row">
+        <span class="lead">Musc. Sound Live Cmp</span>
+        <span class="lead"></span>
+        <span class="lead"></span>
+      </div>
+    </div>
     
   </main>
 </body>
