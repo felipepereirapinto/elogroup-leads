@@ -24,7 +24,6 @@ const Lead = {
             "stage": 0
           }
         ]
-      console.log(this.leads)
       
     } catch (error) {
       console.error(error);
@@ -40,32 +39,39 @@ const Lead = {
     </div>
     `
 
+    // Populates the rows with each Lead in its current stage
     this.leads.forEach(lead => {
-      let draggableLead = `
-      <span 
-        ondragstart="Lead.dragStart(event)"
-        draggable="true"
-        id="dragtarget"
-      >
-        ${lead.name}
+      // A Lead cannot go back to a previous stage (now empty),
+      // nor go straight to one (still empty)
+      const emptyStage = `
+        <span class="lead">
+        </span>
+      `
+      // A Lead must be draggable to its next stage
+      const currentStage = `
+      <span class="lead">
+        <span ondragstart="Lead.dragStart(event)" draggable="true" id="lead-${lead.id}">
+          ${lead.name}
+        </span>
       </span>
       `
-      
+      // A Lead cannot leave its last stage unless it's deleted
+      // TODO: Lead.delete(id) and/or Lead.edit(id)
+      const nextStage = `
+        <span class="lead lead-${lead.id}" ondrop="Lead.drop(event)" ondragover="Lead.allowDrop(event)">
+        </span>
+      `
+
       this.leadsContainer.innerHTML += `
-        <div class="leads-row">
-          <span class="lead">
-            ${lead.stage == 0 ? draggableLead : ''}
-          </span>
-
-          <span class="lead" ${lead.stage == 0 ? this.dropAttributes : ''}>
-            ${lead.stage == 1 ? draggableLead : ''}
-          </span>
-
-          <span class="lead" ${lead.stage == 1 ? this.dropAttributes : ''}>
-            ${lead.stage == 2 ? draggableLead : ''}
-          </span>
-        </div>
-        `
+      <div class="leads-row">${
+        lead.stage === 0 
+          ? currentStage + nextStage + emptyStage
+          : lead.stage === 1
+            ? emptyStage + currentStage + nextStage
+            : emptyStage + emptyStage + currentStage
+        }
+      </div>
+      `
     })
 
   },
@@ -74,8 +80,14 @@ const Lead = {
     alert('Open modal')
   },
 
+  nextStage(id) {
+    this.leads[id].stage += 1
+
+    this.show()
+  },
+
   dragStart(event) {
-    event.dataTransfer.setData("Text", event.target.id);
+    event.dataTransfer.setData("Text", event.target.id)
   },
   
   // dragging(event) {
@@ -83,13 +95,23 @@ const Lead = {
   // },
   
   allowDrop(event) {
-    event.preventDefault();
+    event.preventDefault()
   },
   
   drop(event) {
-    event.preventDefault();
-    let data = event.dataTransfer.getData("Text");
-    event.target.appendChild(document.getElementById(data));
+    event.preventDefault()
+
+    let leadId = event.dataTransfer.getData("Text")
+    let [ , stageTarget] = event.target.classList
+
+    if (leadId == stageTarget) {
+      // this.nextStage(leadId.replace('lead-',''))
+      event.target.appendChild(document.getElementById(leadId))
+      event.dataTransfer.clearData()
+
+      let id = leadId.replace('lead-','')
+      Lead.nextStage(id)
+    }
   },
 }
 
