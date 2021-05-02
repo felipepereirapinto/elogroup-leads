@@ -11,7 +11,7 @@
 
 <body>
   <main class="container">
-    <img src="/public/logo.png" alt="EloGroup">
+    <img src="../public/logo.png" alt="EloGroup">
 
     <form action="">
       <div class="input-field">
@@ -34,6 +34,7 @@
           placeholder="********"
           required
           title="Password deve possuir ao menos 8 caracteres, contendo ao menos, um caracter especial, um caracter numérico, um caracter alfanumérico"
+          pattern="/(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*()--__+.]).{8,}/gms"
           >
         </div>
         
