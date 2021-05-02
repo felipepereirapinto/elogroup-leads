@@ -7,6 +7,8 @@
   <title>EloGroup Leads</title>
 
   <link rel="stylesheet" href="login.css">
+
+  <script src="./login.js" defer></script>
 </head>
 
 <body>
@@ -35,6 +37,7 @@
           required
           title="Password deve possuir ao menos 8 caracteres, contendo ao menos, um caracter especial, um caracter numérico, um caracter alfanumérico"
           pattern="(?=.*\d)(?=.*\w)(?=.*\W).{8,}"
+          onchange="Password.validate()"
           >
         </div>
         
@@ -47,6 +50,8 @@
           placeholder="********"
           required
           title="Password e confirmação devem ser iguais"
+          pattern="(?=.*\d)(?=.*\w)(?=.*\W).{8,}"
+          onkeyup="Password.validate()"
           >
       </div>
       
