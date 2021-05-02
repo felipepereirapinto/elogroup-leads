@@ -47,6 +47,7 @@ main {
 main .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 2rem;
 }
 
@@ -57,8 +58,8 @@ main .header {
 .header h1 {
   font-size: 1.375rem;
   font-weight: normal;
-  padding-left: 4rem;
   color: #555;
+  width: 55%;
 }
 
 main button {
@@ -98,3 +99,99 @@ main button:hover {
   width: 100%;
   padding: 1rem;
 }
+
+/* New Lead Form */
+
+.inactive {
+  position: fixed;
+  opacity: 0;
+  visibility: hidden;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+  /* flex-direction: column; */
+  
+  /* padding: 0 1.5rem; */
+}
+
+#contact {
+  width: 30%;
+}
+
+
+form .input-field {
+  display: flex;
+  flex-direction: column;
+  
+  font-size: 0.9rem;
+}
+
+.input-field label,
+.input-field input {
+  padding-left: 0.5rem;
+}
+
+form input {
+  border: 1px black solid;
+  height: 2rem;
+  
+  margin: 0.5rem 0 1rem;
+}
+
+form input[type="submit"] {
+  background-color: white;
+  height: 3rem;
+
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+#opportunity {
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+}
+
+#opportunity h2 {
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+
+.checkbox-field {
+  display: flex;  
+  align-items: center;
+  height: 1.5rem;
+  
+  border: 1px black;
+  border-style: none solid solid solid;
+}
+
+.checkbox-field:first-of-type{
+  background-color: #9E9E9E;
+  border-style: solid;
+  margin-top: 0.5rem;
+}
+
+.checkbox-field:nth-of-type(2n+3){
+  background-color: #E6E6E6;
+}
+
+
+#opportunity label,
+#opportunity input[type="text"]  {
+  height: auto;
+  margin: 0;
+  font-size: 0.9rem;
+  flex: 1;
+  border: 0;
+}
+
+#opportunity input[type="checkbox"] {
+  margin: 0 0.5rem;
+}
+
+
+
+

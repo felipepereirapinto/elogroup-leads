@@ -12,15 +12,94 @@
 </head>
 
 <body>
-  <main class="container">
+  <main>
     <div class="header">
       <img src="../public/logo.png" alt="EloGroup">
       <h1>Painel de Leads</h1>
     </div>
 
-    <button onclick="Lead.create()">Novo Lead (+)</button>
+    <div id="leads-panel" class="inactive">
+      <button onclick="Lead.create()">Novo Lead (+)</button>
 
-    <div id="leads-container"></div>
+      <div id="leads-container"></div>
+    </div>
+
+
+    <div id="new-lead" class="">
+      <form action="">
+        <section id="contact">
+          <div class="input-field">
+            <label for="name">Nome *</label>
+            <input 
+              type="text" 
+              name="name" 
+              id="name"
+              required
+              title="Preencha o nome do cliente"
+              >  
+          </div>
+  
+          <div class="input-field">
+            <label for="phone">Telefone *</label>
+            <input 
+              type="number" 
+              name="phone" 
+              id="phone"
+              required
+              title="Preencha apenas números"
+              pattern="\d{7,}"
+              >  
+          </div>
+  
+          <div class="input-field">
+            <label for="email">E-mail *</label>
+            <input 
+              type="email" 
+              name="email" 
+              id="email"
+              required
+              title="Preencha um e-mail válido"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+              >  
+          </div>
+        </section>
+
+        <section id="opportunity">
+          <h2>Oportunidades *</h2>
+
+          <div class="checkbox-field">
+            <input type="checkbox" name="all" id="all">
+            <label for="all"></label>
+          </div>
+          
+          <div class="checkbox-field">
+            <input type="checkbox" name="rpa" id="rpa">
+            <label for="rpa">RPA</label>
+          </div>
+          
+          <div class="checkbox-field">
+            <input type="checkbox" name="digital-product" id="digital-product">
+            <label for="digital-product">Produto Digital</label>
+          </div>
+          
+          <div class="checkbox-field">
+            <input type="checkbox" name="analytics" id="analytics">
+            <label for="analytics">Analytics</label>
+          </div>
+          
+          <div class="checkbox-field">
+            <input type="checkbox" name="bpm" id="bpm">
+            <label for="bpm">BPM</label>
+          </div>
+          
+          <div class="checkbox-field">
+            <input type="checkbox" class="other">
+            <input type="text" class="other">
+          </div>
+        </section>
+      </form>
+          
+    </div>
     
   </main>
 </body>

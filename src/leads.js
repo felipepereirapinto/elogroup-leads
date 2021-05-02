@@ -1,7 +1,8 @@
 const Lead = {
   leads: [],
+  leadsPanel: document.getElementById('leads-panel'),
   leadsContainer: document.getElementById('leads-container'),
-  dropAttributes: 'ondrop="Lead.drop(event)" ondragover="Lead.allowDrop(event)"',
+  leadTargetId: '',
 
   async get() {
     // Fake leads fetch from API
@@ -77,7 +78,7 @@ const Lead = {
   },
 
   create() {
-    alert('Open modal')
+    Panel.toggleForm()
   },
 
   nextStage(id) {
@@ -87,12 +88,8 @@ const Lead = {
   },
 
   dragStart(event) {
-    event.dataTransfer.setData("Text", event.target.id)
+    Lead.leadTargetId = event.target.id
   },
-  
-  // dragging(event) {
-  //   document.getElementById("demo").innerHTML = "The p element is being dragged";
-  // },
   
   allowDrop(event) {
     event.preventDefault()
@@ -101,13 +98,11 @@ const Lead = {
   drop(event) {
     event.preventDefault()
 
-    let leadId = event.dataTransfer.getData("Text")
+    let leadId = Lead.leadTargetId
     let [ , stageTarget] = event.target.classList
 
-    if (leadId == stageTarget) {
-      // this.nextStage(leadId.replace('lead-',''))
-      event.target.appendChild(document.getElementById(leadId))
-      event.dataTransfer.clearData()
+    if (leadId === stageTarget) {
+      Lead.leadTargetId = ''
 
       let id = leadId.replace('lead-','')
       Lead.nextStage(id)
@@ -119,7 +114,13 @@ const Panel = {
   async init() {
     await Lead.get()
     Lead.show()
+  },
+
+  toggleForm() {
+    Lead.leadsContainer.classList.toggle('inactive')
+    Lead.leadsPanel.classList.toggle('inactive')
   }
+
 }
 
 Panel.init()
