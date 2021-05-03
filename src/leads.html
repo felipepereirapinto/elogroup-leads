@@ -15,18 +15,17 @@
   <main>
     <div class="header">
       <img src="../public/logo.png" alt="EloGroup">
-      <h1>Painel de Leads</h1>
+      <h1 id="header-title">Painel de Leads</h1>
     </div>
 
-    <div id="leads-panel" class="inactive">
-      <button onclick="Lead.create()">Novo Lead (+)</button>
+    <div id="leads-panel" class="">
+      <button onclick="Panel.toggleForm()">Novo Lead (+)</button>
 
       <div id="leads-container"></div>
     </div>
 
-
-    <div id="new-lead" class="">
-      <form action="">
+    <div id="new-lead" class="inactive">
+      <form action="#">
         <section id="contact">
           <div class="input-field">
             <label for="name">Nome *</label>
@@ -35,6 +34,7 @@
               name="name" 
               id="name"
               required
+              class="contact"
               title="Preencha o nome do cliente"
               >  
           </div>
@@ -46,6 +46,7 @@
               name="phone" 
               id="phone"
               required
+              class="contact"
               title="Preencha apenas números"
               pattern="\d{7,}"
               >  
@@ -58,6 +59,7 @@
               name="email" 
               id="email"
               required
+              class="contact"
               title="Preencha um e-mail válido"
               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
               >  
@@ -68,37 +70,41 @@
           <h2>Oportunidades *</h2>
 
           <div class="checkbox-field">
-            <input type="checkbox" name="all" id="all">
+            <input type="checkbox" name="all" id="all" onclick="NewLead.toggleAll(this)">
             <label for="all"></label>
           </div>
           
           <div class="checkbox-field">
-            <input type="checkbox" name="rpa" id="rpa">
+            <input type="checkbox" class="opportunity" name="rpa" id="rpa">
             <label for="rpa">RPA</label>
           </div>
           
           <div class="checkbox-field">
-            <input type="checkbox" name="digital-product" id="digital-product">
+            <input type="checkbox" class="opportunity" name="digital-product" id="digital-product">
             <label for="digital-product">Produto Digital</label>
           </div>
           
           <div class="checkbox-field">
-            <input type="checkbox" name="analytics" id="analytics">
+            <input type="checkbox" class="opportunity" name="analytics" id="analytics">
             <label for="analytics">Analytics</label>
           </div>
           
           <div class="checkbox-field">
-            <input type="checkbox" name="bpm" id="bpm">
+            <input type="checkbox" class="opportunity" name="bpm" id="bpm">
             <label for="bpm">BPM</label>
           </div>
           
           <div class="checkbox-field">
-            <input type="checkbox" class="other">
-            <input type="text" class="other">
+            <input type="checkbox" class="opportunity other">
+            <input type="text" class="other" id="other">
+          </div>
+
+          <div class="button-field">
+            <button onclick="NewLead.cancel()" type="button" formnovalidate>Cancelar</button>
+            <input onclick="NewLead.save()" onsubmit="this.preventDefault()" type="submit" value="Salvar" >
           </div>
         </section>
-      </form>
-          
+      </form>   
     </div>
     
   </main>

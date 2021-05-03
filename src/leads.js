@@ -77,8 +77,25 @@ const Lead = {
 
   },
 
-  create() {
-    Panel.toggleForm()
+  create({name, phone, email}) {
+    const newId = Lead.leads.length
+    Lead.leads.push(
+      {
+        "id": newId,
+        "name": name,
+        "stage": 0,
+        "contact": {
+          "phone": phone,
+          "email": email
+        }
+      },
+    )
+    
+    setTimeout(() => {
+      alert('Lead incluído com sucesso!')
+      console.log(this.leads)
+    }, 1000)
+
   },
 
   nextStage(id) {
@@ -110,17 +127,67 @@ const Lead = {
   },
 }
 
+const NewLead = {
+  headerTitle: 'Novo Lead',
+  container: document.getElementById('new-lead'),
+  form: document.getElementById('new-lead'),
+
+  contactFields: Array.from(document.getElementsByClassName('contact')),
+  checkboxes: Array.from(document.getElementsByClassName('opportunity')),
+  otherOpportunity: document.getElementById('other'),
+
+  save() {
+    const name = NewLead.contactFields[0].value
+    const phone = NewLead.contactFields[1].value
+    const email = NewLead.contactFields[2].value
+
+    // const opportunities = {}
+    // NewLead.checkboxes.forEach(checkbox => {
+    //   opportunities.push(checkbox.checked)
+    // })
+
+    Lead.create({
+      name,
+      phone,
+      email
+      // opportunities
+    })
+
+  },
+
+  cancel() {
+    this.checkboxes.forEach(checkbox => checkbox.checked = false)
+    this.contactFields.forEach(field => field.value = '')
+    this.otherOpportunity.value = ''
+
+    Panel.toggleForm()
+  },
+
+  toggleAll(source) {
+    this.checkboxes.forEach(checkbox => {
+      checkbox.checked = source.checked
+    })
+  }
+}
+
 const Panel = {
+  headerTitle: 'Painel de Leads',
+  headerContainer: document.getElementById('header-title'),
+  container: document.getElementById('leads-panel'),
+
   async init() {
     await Lead.get()
     Lead.show()
   },
 
   toggleForm() {
-    Lead.leadsContainer.classList.toggle('inactive')
-    Lead.leadsPanel.classList.toggle('inactive')
-  }
+    Panel.container.classList.toggle('inactive')
+    NewLead.container.classList.toggle('inactive')[0]
 
+    Panel.headerContainer.innerHTML = Panel.headerContainer.innerHTML == Panel.headerTitle 
+      ? NewLead.headerTitle
+      : Panel.headerTitle
+  }
 }
 
 Panel.init()
